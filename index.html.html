@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deep Bubble — Submarine Defense</title>
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<canvas id="gameCanvas"></canvas>
+
+<div id="ui">
+  <div id="topBar">
+    <div class="panel">
+      <div class="label">bubble integrity</div>
+      <div id="healthBar"><div id="healthFill"></div></div>
+      <div id="healthVal">100 / 100</div>
+    </div>
+    <div class="panel" id="scorePanel">
+      <div class="label">score</div>
+      <div id="scoreVal">000000</div>
+      <div id="waveVal">WAVE 1</div>
+    </div>
+  </div>
+</div>
+
+<div id="weapons">
+  <div class="weapon-slot active" id="ws1">
+    <div class="weapon-key">[ 1 ]</div>
+    <div class="weapon-name">PULSE</div>
+    <div class="weapon-ammo">∞ AUTO</div>
+  </div>
+  <div class="weapon-slot" id="ws2">
+    <div class="weapon-key">[ 2 ]</div>
+    <div class="weapon-name">TORPEDO</div>
+    <div class="weapon-ammo" id="ammo2">12</div>
+  </div>
+  <div class="weapon-slot" id="ws3">
+    <div class="weapon-key">[ 3 ]</div>
+    <div class="weapon-name">NOVA BURST</div>
+    <div class="weapon-ammo" id="ammo3">5</div>
+  </div>
+</div>
+
+<div id="overlay">
+  <h1>DEEP BUBBLE</h1>
+  <div class="sub-title">SUBMARINE DEFENSE PROTOCOL</div>
+  <button class="btn" id="startBtn">DIVE IN</button>
+</div>
+
+<script src="js/game.js"></script>
+</body>
+</html>
