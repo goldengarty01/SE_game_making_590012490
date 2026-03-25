@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  body {
+    background: #000;
+    overflow: hidden;
+    font-family: 'Share Tech Mono', monospace;
+    user-select: none;
+  }
+ 
+  #gameCanvas { display: block; }
+ 
+  #ui {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+ 
+  #topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 14px 20px;
+  }
+ 
+  .panel {
+    background: rgba(0,20,40,0.75);
+    border: 1px solid rgba(0,200,255,0.3);
+    border-radius: 8px;
+    padding: 10px 16px;
+    backdrop-filter: blur(6px);
+  }
+ 
+  .label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(0,200,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+ 
+  #healthBar {
+    width: 180px;
+    height: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  #healthFill {
+    height: 100%;
+    background: linear-gradient(90deg, #00ffe0, #00aaff);
+    border-radius: 5px;
+    transition: width 0.2s, background 0.3s;
+    box-shadow: 0 0 8px #00ffe088;
+  }
+  #healthVal {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    color: #00ffe0;
+    font-weight: 700;
+    margin-top: 3px;
+  }
+ 
+  #scorePanel { text-align: right; }
+  #scoreVal {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  #waveVal {
+    font-family: 'Orbitron', monospace;
+    font-size: 12px;
+    color: #ffcc00;
+    margin-top: 2px;
+  }
+ 
+  #weapons {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    pointer-events: none;
+    z-index: 10;
+  }
+ 
+  .weapon-slot {
+    background: rgba(0,20,40,0.85);
+    border: 1px solid rgba(0,200,255,0.2);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    min-width: 80px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .weapon-slot.active {
+    border-color: #00ffe0;
+    box-shadow: 0 0 16px #00ffe055, inset 0 0 10px #00ffe011;
+  }
+  .weapon-key {
+    font-size: 9px;
+    color: rgba(0,200,255,0.4);
+    letter-spacing: 2px;
+    margin-bottom: 3px;
+  }
+  .weapon-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    color: #aaf;
+    letter-spacing: 1px;
+  }
+  .weapon-slot.active .weapon-name { color: #00ffe0; }
+  .weapon-ammo {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+  .weapon-slot.active .weapon-ammo { color: #fff; }
+ 
+  #overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,5,20,0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    font-family: 'Orbitron', monospace;
+  }
+  #overlay h1 {
+    font-size: clamp(28px,5vw,52px);
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #00ffe0;
+    text-shadow: 0 0 30px #00ffe088;
+    margin-bottom: 8px;
+  }
+  #overlay .sub-title {
+    font-size: 12px;
+    color: rgba(0,200,255,0.5);
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+  }
+  #overlay .btn {
+    pointer-events: all;
+    background: transparent;
+    border: 1px solid #00ffe0;
+    color: #00ffe0;
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    letter-spacing: 4px;
+    padding: 14px 40px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+  }
+  #overlay .btn:hover {
+    background: rgba(0,255,224,0.1);
+    box-shadow: 0 0 24px #00ffe055;
+  }
+  .controls-info {
+    margin-top: 30px;
+    font-size: 10px;
+    color: rgba(0,200,255,0.35);
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 2;
+  }
+  #finalScore {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffcc00;
+    margin: 10px 0;
+  }
+  #overlay.hidden { display: none; }
+ 
+  #ammoRegen {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: rgba(0,200,255,0.35);
+    letter-spacing: 3px;
+    pointer-events: none;
+    z-index: 10;
+  }
